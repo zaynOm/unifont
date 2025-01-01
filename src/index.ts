@@ -12,7 +12,7 @@ const missingChars: Record<Styles, Record<string, string>> = {
   underline: {},
 };
 
-function format(style: Styles, text: string) {
+export function format(style: Styles, text: string) {
   let res = [];
   for (const c of text) {
     const code = c.charCodeAt(0);
