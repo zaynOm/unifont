@@ -6,11 +6,19 @@ const fonts = {
   underline: { upper: 119743, lower: 119737, number: null },
 };
 
+const missingChars: Record<Styles, Record<string, string>> = {
+  bold: {},
+  italic: { h: "ℎ" },
+  underline: {},
+};
+
 function format(style: Styles, text: string) {
   let res = [];
   for (const c of text) {
     const code = c.charCodeAt(0);
-    if (/[A-Z]/.test(c)) {
+    if (missingChars[style]?.[c]) {
+      res.push(missingChars[style][c].codePointAt(0)!);
+    } else if (/[A-Z]/.test(c)) {
       res.push(code + fonts[style].upper);
     } else if (/[a-z]/.test(c)) {
       res.push(code + fonts[style].lower);
