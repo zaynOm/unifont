@@ -24,6 +24,10 @@ export function format(style: Styles, text: string): string {
   let res = [];
   const font = fonts[style];
 
+  if (style === "underline") return underline(text);
+
+  if (typeof font === "number") return text;
+
   for (const char of text) {
     const code = char.codePointAt(0)!;
     if (missingChars[style]?.[char]) {
