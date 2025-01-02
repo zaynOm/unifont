@@ -15,10 +15,8 @@ const fonts: Font = {
   monospace: { upper: 120367, lower: 120361, number: 120774 },
 };
 
-const missingChars: Record<Styles, Record<string, string>> = {
-  bold: {},
+const missingChars: Partial<Record<Styles, Record<string, string>>> = {
   italic: { h: "ℎ" },
-  underline: {},
 };
 
 export function format(style: Styles, text: string) {
