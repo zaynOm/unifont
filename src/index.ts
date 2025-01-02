@@ -1,11 +1,14 @@
 type Styles = "bold" | "italic" | "monospace" | "underline";
 
-const fonts = {
 type UnicodeCharMap = {
   upper: number;
   lower: number;
   number: number | null;
 };
+
+type Font = Record<Styles, UnicodeCharMap | number>;
+
+const fonts: Font = {
   bold: { upper: 119743, lower: 119737, number: 120734 },
   italic: { upper: 119795, lower: 119789, number: null },
   underline: { upper: 119743, lower: 119737, number: null },
