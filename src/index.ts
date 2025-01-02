@@ -19,18 +19,20 @@ const missingChars: Partial<Record<Styles, Record<string, string>>> = {
   italic: { h: "ℎ" },
 };
 
-export function format(style: Styles, text: string) {
+
+export function format(style: Styles, text: string): string {
   let res = [];
-  for (const c of text) {
-    const code = c.charCodeAt(0);
-    if (missingChars[style]?.[c]) {
-      res.push(missingChars[style][c].codePointAt(0)!);
-    } else if (/[A-Z]/.test(c)) {
-      res.push(code + fonts[style].upper);
-    } else if (/[a-z]/.test(c)) {
-      res.push(code + fonts[style].lower);
-    } else if (fonts[style].number && /[0-9]/.test(c))
-      res.push(code + fonts[style].number);
+  const font = fonts[style];
+
+  for (const char of text) {
+    const code = char.codePointAt(0)!;
+    if (missingChars[style]?.[char]) {
+      res.push(missingChars[style][char].codePointAt(0)!);
+    } else if (/[A-Z]/.test(char)) {
+      res.push(code + font.upper);
+    } else if (/[a-z]/.test(char)) {
+      res.push(code + font.lower);
+    } else if (font.number && /[0-9]/.test(char)) res.push(code + font.number);
     else res.push(code);
   }
 
