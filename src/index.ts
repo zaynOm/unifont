@@ -1,9 +1,10 @@
-type Styles = "bold" | "italic" | "underline";
+type Styles = "bold" | "italic" | "monospace" | "underline";
 
 const fonts = {
   bold: { upper: 119743, lower: 119737, number: 120734 },
   italic: { upper: 119795, lower: 119789, number: null },
   underline: { upper: 119743, lower: 119737, number: null },
+  monospace: { upper: 120367, lower: 120361, number: 120774 },
 };
 
 const missingChars: Record<Styles, Record<string, string>> = {
